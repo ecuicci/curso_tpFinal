@@ -1,0 +1,89 @@
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script>
+document.ready(function(){
+
+    $("#num1").blur(function(){
+        var input1 = $("#num1").val();
+        $("#numero1").val(input1);  
+    })
+    
+    $("#num2").blur(function(){
+        var input2 = $("#num2").val();
+        $("#numero2").val(input2);  
+    })
+    
+    $("#blanquear").click(function(){
+        $("input[type=number]").val("")
+    })
+         
+    $("div input[type=button]").click(function($this) {
+      console.log($this);  
+    })
+    
+    /*
+    function calcular (accion){
+        var num1 = document.getElementById('num1').value;
+        var num2 = document.getElementById('num2').value;
+    
+        if(num1 != ""){
+            num1 = parseInt(num1);
+        }else{
+            document.getElementById("num1").focus();
+            alert ("Debe completar el operando 1");
+            accion = "";
+            return;
+        }
+    
+        if(num2 != ""){
+            num2 = parseInt(num2);
+        }else{
+            document.getElementById("num2").focus();
+            alert ("Debe completar el operando 2");
+            accion = "";
+            return;
+        }
+        //si llego aca es porque estan los dos operandos completos 
+        var operador = accion;
+        switch(operador) {
+            case "mas": 
+                resultado = (num1 + num2);
+                break;
+            case 'menos':
+                resultado = (num1 - num2);
+                break;
+            case 'multip':
+                resultado = (num1 * num2);
+                break;
+            case 'div':
+                resultado = (num1 / num2);
+            break;
+    }
+    document.getElementById('resu').value = resultado;
+    */
+    
+    } 
+    
+    
+    </script>
+    
+    <html>
+    <label for="num1">Operando 1:</label>
+        <input type="number" name="num1" id="num1" onblur="cargarnum1();"><br><br>
+    <label for="num2">Operando 2:</label>
+        <input type="number" name="num2" id="num2" onblur="cargarnum2();"> <br><br>
+    <input type="number" name="numero1" id="numero1" disabled> 
+    <div style="width:50%;">    
+        <input type="button" name="mas" id="mas" onclick="calcular('mas');" value="+">
+        <input type="button" name="menos" id="menos" onclick="calcular('menos');" value="-">
+        <input type="button" name="multip" id="multip" onclick="calcular('multip');" value="X">
+        <input type="button" name="div" id="div" onclick="calcular('div');" value="/"><br>
+    </div>
+    <input type="number" name="numero2" id="numero2" disabled>
+    <label for="resu">Resultado:</label>
+        <input type="number" name="resu" id="resu" value=""><br><br>
+    <br><br>
+    <input type="button" name="blanquear" id="blanquear" onclick="blanquear();" value="Blanquear"><br>
+    </html>
