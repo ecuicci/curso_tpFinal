@@ -9,11 +9,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
    
 </head>
 <body>
-   <h3>Detalle del producto <?=$resultado["Nombre"]?></h3>  <br><br>  
+   <h3>Detalle del producto <?=$resultado["nombre"]?></h3>  <br><br>  
    <?php 
-           echo "<b> Codigo de producto:</b> ". $resultado['Id']." <br>  ";
-           echo "<b> Nombre:</b> ". $resultado['Nombre'] . "<br>  ";
-           echo" <b> Precio:</b> ". $resultado['Precio'] . "  <br> ";
+           echo "<b> Codigo de producto:</b> ". $resultado['id']." <br>  ";
+           echo "<b> Nombre:</b> ". $resultado['nombre'] . "<br>  ";
+           echo" <b> Precio:</b> ". $resultado['precio'] . "  <br> ";
            echo" <b> En Stock: </b>". $resultado['enStock']." <br> ";
            echo "<br>";
        ?> 

@@ -12,7 +12,7 @@ class Productos extends CI_Controller {
         $parametros["productos"] = array();
         foreach($todosLosProductos as $key => $valor ){
              
-                if($valor["Stock"] == '1')
+                if($valor["stock"] == '1')
                 {
                     $todosLosProductos[$key]["enStock"] = "Si";
                 }else{
@@ -34,7 +34,7 @@ class Productos extends CI_Controller {
 
             $this->load->view('errors/html/error_general.php', $message);
         }else{
-            if($resultado[0]["Stock"] == '1')
+            if($resultado[0]["stock"] == '1')
                     {
                         $resultado[0]["enStock"] = "Si";
                     }else{

@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
    <?php foreach ($productos as $prod)
        {?>
    
-       <a href="<?=base_url()?>Productos/detalle/<?=$prod['Id']?> "><?=$prod['Nombre']?> </a><br>
+       <a href="<?=base_url()?>Productos/detalle/<?=$prod['id']?> "><?=$prod['nombre']?> </a><br>
         
        <?php } ?>
 </body>
