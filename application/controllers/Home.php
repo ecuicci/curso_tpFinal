@@ -20,11 +20,6 @@ class Home extends CI_Controller {
      */
     public function index()
     { 
-        $this->load->model("productos_model");
-        $resultado = $this->productos_model->getAll();
-        
-        $parametros["title"] = "titulo de la pagina";
-        $parametros["body"] = "cuerpo de la pagina";
-        $this->load->view('inicio', $parametros);
+        $this->load->view('login');
     }
 }

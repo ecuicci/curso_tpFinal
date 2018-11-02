@@ -45,7 +45,11 @@ class Productos extends CI_Controller {
             
             $this->load->view('detalle_producto', $resultado);
         }
-}
+    }
+        public function comprar($id){
+            print_r($id); exit();
+        }
+
 }
 
     
