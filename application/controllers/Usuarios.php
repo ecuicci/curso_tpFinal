@@ -20,6 +20,9 @@ class Usuarios extends CI_Controller {
       if($usuario != false){
             //seguir confirmar que sean datos validos  
             if($usuario[0]["pass"] == $pass){
+                $this->load->library('session');
+                $_SESSION["name"]=$usuario[0]["nombre"];
+                $_SESSION["id"]=$usuario[0]["id"];
                 $this->list_productos($usuario[0]);
             }else{
                 $parametros["mensaje"] = "Su datos de ingreso no son validos";

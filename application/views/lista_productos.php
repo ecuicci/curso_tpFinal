@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
    <?php if(isset($usuario)){?>
         <div class="alert alert-success">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <strong>Bienvenid@ </strong><?php echo $usuario["nombre"];?>
+                <strong>Bienvenid@ </strong><?php echo $_SESSION["name"];?>
             </div> 
     <?php } ?> 
 <div class="col-sm-6 col-sm-offset-3">

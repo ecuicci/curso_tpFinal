@@ -46,10 +46,41 @@ class Productos extends CI_Controller {
             $this->load->view('detalle_producto', $resultado);
         }
     }
-        public function comprar($id){
-            print_r($id); exit();
+
+    public function comprar()
+        {  
+            $idProd = $this->input->post("idProd");
+            $cant = $this->input->post("mcantidad");
+            $this->load->model("productos_model");
+            $datosProd = $this->productos_model->getById($idProd); 
+            $idUsuario = $_SESSION["id"];
+            $precio = $datosProd[0]["precio"];
+            $precio_total = $cant * $precio;
+
+            $compra["id_producto"] = $idProd;
+            $compra["cantidad"] = $cant;
+            $compra["precio_total"] = $precio_total;
+            $compra["id_usuario"] = $idUsuario;
+
+          //si no tiene una compra pendiente, le abro una nueva...
+          
+          $this->load->model("compras_model");
+            $compras = $this->compras_model->getComprasByIdUsuario($idUsuario);
+            if($compras == null){
+               var_dump( $this->compras_model->crearOrden($compra)); exit();
+                //tabla compras
+             
+            }else{
+                $this->AgregarAOrden($compra);
+               
+            }
         }
 
+    public function crearOrden($compra){
+
+    }
+
+     
 }
 
     
