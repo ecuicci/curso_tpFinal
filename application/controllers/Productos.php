@@ -18,10 +18,18 @@ class Productos extends CI_Controller {
                 }else{
                     $todosLosProductos[$key]["enStock"] = "No";
                 }
-            
-
         }
+
+        $idUsuario = $_SESSION["id"];
+        $this->load->model("compras_model");
+        $compras = $this->compras_model->getComprasByIdUsuario($idUsuario);
+
         $parametros["productos"] = $todosLosProductos;
+        $parametros["compras"] = $compras;
+        if($_SESSION["mensaje"]!= ""){
+            $parametros["mensaje"] = $_SESSION["mensaje"];   
+        }
+        $_SESSION["mensaje"] = ""; 
         $this->load->view('lista_productos', $parametros);
     }
     public function detalle($id)
@@ -48,7 +56,7 @@ class Productos extends CI_Controller {
     }
 
     public function comprar()
-        {  
+        {   
             $idProd = $this->input->post("idProd");
             $cant = $this->input->post("mcantidad");
             $this->load->model("productos_model");
@@ -65,21 +73,41 @@ class Productos extends CI_Controller {
           //si no tiene una compra pendiente, le abro una nueva...
           
           $this->load->model("compras_model");
-            $compras = $this->compras_model->getComprasByIdUsuario($idUsuario);
+            $compras = $this->compras_model->getComprasPendientesByIdUsuario($idUsuario);
+            
+            
             if($compras == null){
-               var_dump( $this->compras_model->crearOrden($compra)); exit();
+             $this->compras_model->crearOrden($compra);
                 //tabla compras
-             
             }else{
-                $this->AgregarAOrden($compra);
+                //tabla compra-prod
+                $idCompra = $compras[0]["id"];
+                $this->compras_model->AgregarAOrden($compra,$idCompra);
                
             }
+            $_SESSION["mensaje"] = "Su producto se agregó al carrito";
+            $this->index();
+
         }
 
-    public function crearOrden($compra){
-
+    public function verCarrito(){  
+        $idUsuario = $_SESSION["id"];
+        $this->load->model("compras_model");
+        $compras = $this->compras_model->getComprasByIdUsuario($idUsuario);
+        echo json_encode($compras);exit();   
     }
 
+    public function eliminar(){
+        $idCompra = $this->input->post("idCompra");
+        $this->load->model("productos_model");
+        $eliminado = $this->productos_model->deleteCompra($idCompra); 
+        
+       if($eliminado == true){
+        $parametros["mensaje"] = "Se ha eliminado correctamente";
+        
+        $this->index();
+       }
+    }
      
 }
 

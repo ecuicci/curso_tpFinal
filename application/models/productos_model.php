@@ -20,7 +20,13 @@ class productos_model extends CI_Model  {
        $consulta = $this->db->get();
        $resultados = $consulta->result_array();
        return $resultados;
-   }   
+   } 
+   
+   public function deleteCompra($idCompra){
+    $this->db->where('id', $idCompra);
+    $this->db->delete('compra-prod'); 
+    return ($this->db->affected_rows() != 1) ? false : true;
+   }
      
 }
 ?>

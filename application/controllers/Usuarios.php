@@ -73,11 +73,16 @@ class Usuarios extends CI_Controller {
                 }else{
                     $todosLosProductos[$key]["enStock"] = "No";
                 }
-            
-
         }
+
+        $idUsuario = $_SESSION["id"];
+        $this->load->model("compras_model");
+        $compras = $this->compras_model->getComprasByIdUsuario($idUsuario);
+
+
         $parametros["productos"] = $todosLosProductos;
         $parametros["usuario"] = $usuario;
+        $parametros["compras"] = $compras;
         $this->load->view('lista_productos', $parametros);
     }
 
